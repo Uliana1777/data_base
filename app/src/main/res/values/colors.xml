@@ -12,4 +12,5 @@
     <color name="lightPrimary">#b47cff</color>
     <color name="darkPrimary">#3f1dcb</color>
 
+    <color name="white">#ffff</color>
 </resources>

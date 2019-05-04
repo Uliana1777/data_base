@@ -1,58 +1,76 @@
 package com.example.uliana.moneyapp;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapter.CardViewHolder> {
+public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapter.MyViewHolder> {
     List<Transaction> transactions;
-    public TransactionsAdapter( List <Transaction> transactions) {
-        this.transactions = transactions;
+    private Context context;
+
+    public TransactionsAdapter(Context context) {
+        this.context = context;
     }
-
-
 
 
     @NonNull
     @Override
-    public TransactionsAdapter.CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View itemView = LayoutInflater.from (parent.getContext()).inflate(R.layout.list_items, parent,false);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
 
-        return new CardViewHolder(itemView) ;
+        return new MyViewHolder(itemView);
     }
 
 
-
     @Override
-    public void onBindViewHolder(@NonNull TransactionsAdapter.CardViewHolder cardViewHolder, int position) {
+    public void onBindViewHolder(@NonNull TransactionsAdapter.MyViewHolder myViewHolder, int position) {
         Transaction transaction = transactions.get(position);
-        cardViewHolder.title.setText(transaction.getTitle());
-        cardViewHolder.date.setText(transaction.getDate());
-        cardViewHolder.sum.setText(transaction.getSum());
+        myViewHolder.title.setText(transaction.getAddInfo());
+        myViewHolder.date.setText(transaction.getDate());
+        myViewHolder.sum.setText(transaction.getSum());
     }
 
     @Override
     public int getItemCount() {
+        if (transactions == null) {
+            return 0;
+        }
         return transactions.size();
     }
 
-    public static class CardViewHolder extends RecyclerView.ViewHolder{
-        protected TextView title;
-        protected TextView date;
-        protected TextView sum;
 
-        public CardViewHolder( View itemView) {
+    public void setTasks(List<Transaction> transactionList) {
+        transactions = transactionList;
+        notifyDataSetChanged();
+    }
+
+    public List<Transaction> getTasks() {
+
+        return transactions;
+    }
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView title, date, sum;
+        TransactionDatabase mDb;
+
+        MyViewHolder(@NonNull final View itemView) {
             super(itemView);
+            mDb = TransactionDatabase.getInstance(context);
             title = itemView.findViewById(R.id.title);
             date = itemView.findViewById(R.id.date);
             sum = itemView.findViewById(R.id.sum);
 
-
         }
+
+
     }
 }
