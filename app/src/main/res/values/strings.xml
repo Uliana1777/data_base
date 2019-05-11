@@ -10,4 +10,16 @@
     <string name="expenditure">Траты</string>
     <string name="categories">Категории</string>
     <string name="statistics">Статистика</string>
+    <string name="sum_text_view">Сумма</string>
+    <string name="hint_sum">Введите сумму</string>
+    <string name="title">Название</string>
+    <string name="add_title">Введите название</string>
+    <string name="category">Категория</string>
+    <string name="add_date">Выберете дату</string>
+    <string name="date">Дата</string>
+    <string name="save">Сохранить</string>
+    <string name="transaction_title">title</string>
+    <string name="transaction_date">date</string>
+    <string name="transaction_sum">sum</string>
+    <string name="mnyapp">mnyapp.</string>
 </resources>

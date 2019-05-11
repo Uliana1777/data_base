@@ -1,4 +1,4 @@
-package com.example.uliana.moneyapp;
+package com.example.uliana.moneyapp.database;
 
 import android.os.Handler;
 import android.os.Looper;

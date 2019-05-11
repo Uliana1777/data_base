@@ -1,4 +1,4 @@
-package com.example.uliana.moneyapp;
+package com.example.uliana.moneyapp.model;
 
 
 import androidx.room.ColumnInfo;
@@ -11,26 +11,36 @@ public class Transaction  {
     @PrimaryKey (autoGenerate = true)
     private int id;
     @ColumnInfo(name = "sum")
-    private String sum;
+    private float sum;
     @ColumnInfo(name = "addinfo")
     private String addInfo;
-    @ColumnInfo(name = "category")
-    private String category;
+
     @ColumnInfo(name = "date")
     private String date;
 
-    public Transaction(int id, String sum, String addInfo, String category, String date) {
+    /*@ColumnInfo (name = "category_id")
+    private int category_id;*//*
+    @ColumnInfo(name = "category")
+    private Categories categories;*/
+
+    public Transaction(int id, float sum, String addInfo, String date) {
         this.id = id;
         this.sum = sum;
         this.addInfo = addInfo;
-        this.category = category;
         this.date = date;
+
     }
 @Ignore
-    public Transaction(String sum, String addInfo, String category, String date) {
+    public Transaction(float sum, String addInfo, String date) {
         this.sum = sum;
         this.addInfo = addInfo;
-        this.category = category;
+        this.date = date;
+    }
+    @Ignore
+    public Transaction(String sum, String addInfo, String date) {
+
+        this.sum = Integer.valueOf(sum);
+        this.addInfo = addInfo;
         this.date = date;
     }
 
@@ -42,11 +52,11 @@ public class Transaction  {
         this.id = id;
     }
 
-    public String getSum() {
+    public float getSum() {
         return sum;
     }
 
-    public void setSum(String sum) {
+    public void setSum(float sum) {
         this.sum = sum;
     }
 
@@ -58,13 +68,6 @@ public class Transaction  {
         this.addInfo = addInfo;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getDate() {
         return date;

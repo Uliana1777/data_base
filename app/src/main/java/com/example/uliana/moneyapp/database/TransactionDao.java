@@ -1,4 +1,6 @@
-package com.example.uliana.moneyapp;
+package com.example.uliana.moneyapp.database;
+
+import com.example.uliana.moneyapp.model.Transaction;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public interface TransactionDao {
     void deleteTransaction (Transaction transaction);
 
     @Query("SELECT * FROM `transaction` WHERE id = :id")
-    Transaction loadPersonById(int id);
+    Transaction loadTransactionById(int id);
+
+
+
 
 }

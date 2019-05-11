@@ -1,12 +1,15 @@
-package com.example.uliana.moneyapp;
+package com.example.uliana.moneyapp.database;
 
 import android.content.Context;
 import android.util.Log;
 
+import com.example.uliana.moneyapp.model.Transaction;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = Transaction.class, exportSchema = false, version = 1)
+
+@Database(entities = Transaction.class, exportSchema = false, version = 2)
 public abstract class TransactionDatabase extends RoomDatabase {
     private static final String LOG_TAG = TransactionDatabase.class.getSimpleName();
     private static final Object LOCK = new Object();
@@ -19,6 +22,7 @@ public abstract class TransactionDatabase extends RoomDatabase {
                 Log.d(LOG_TAG, "Creating new database instance");
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         TransactionDatabase.class, TransactionDatabase.DATABASE_NAME)
+                        .fallbackToDestructiveMigration()
                         .build();
             }
         }
@@ -27,4 +31,7 @@ public abstract class TransactionDatabase extends RoomDatabase {
     }
 
     public abstract TransactionDao transactionDao();
+
+
+
 }

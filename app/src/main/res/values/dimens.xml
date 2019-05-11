@@ -5,4 +5,15 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="act_add">20dp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="card_radius">7dp</dimen>
+    <dimen name="padding_card">10dp</dimen>
+    <dimen name="line_height">2dp</dimen>
+    <dimen name="card_height">80dp</dimen>
+    <dimen name="card__text">25sp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+    <dimen name="margin_right_text_main">10dp</dimen>
+    <dimen name="margin_top_text_main">10dp</dimen>
 </resources>

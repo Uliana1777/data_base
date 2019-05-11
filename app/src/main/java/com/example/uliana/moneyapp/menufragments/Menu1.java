@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.uliana.moneyapp.AddTransactionActivity;
-import com.example.uliana.moneyapp.AppExecutors;
+import com.example.uliana.moneyapp.database.AppExecutors;
 import com.example.uliana.moneyapp.R;
-import com.example.uliana.moneyapp.Transaction;
-import com.example.uliana.moneyapp.TransactionDatabase;
+import com.example.uliana.moneyapp.model.Transaction;
+import com.example.uliana.moneyapp.database.TransactionDatabase;
 import com.example.uliana.moneyapp.TransactionsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -104,4 +104,6 @@ return inflate;
         });
 
 
-}}
+}
+
+}

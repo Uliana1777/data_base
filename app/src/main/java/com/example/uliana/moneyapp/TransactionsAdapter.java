@@ -1,21 +1,27 @@
 package com.example.uliana.moneyapp;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.example.uliana.moneyapp.database.TransactionDatabase;
+import com.example.uliana.moneyapp.model.Transaction;
 
 import java.util.List;
 
 public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapter.MyViewHolder> {
     List<Transaction> transactions;
-    private Context context;
+    protected Context context;
+    protected int lastPosition = -1;
+
 
     public TransactionsAdapter(Context context) {
         this.context = context;
@@ -36,7 +42,18 @@ public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapt
         Transaction transaction = transactions.get(position);
         myViewHolder.title.setText(transaction.getAddInfo());
         myViewHolder.date.setText(transaction.getDate());
-        myViewHolder.sum.setText(transaction.getSum());
+        myViewHolder.sum.setText(Float.toString(transaction.getSum()));
+
+        /*myViewHolder.selectedOverlay.setVisibility(isSelected(position) ? View.VISIBLE : View.INVISIBLE);*/
+        setAnimation(myViewHolder.cardView, position);
+    }
+
+    private void setAnimation(View viewToAnimate, int position) {
+        if (position > lastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override
@@ -61,6 +78,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapt
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title, date, sum;
         TransactionDatabase mDb;
+        protected View selectedOverlay;
+        protected CardView cardView;
 
         MyViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -68,6 +87,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter <TransactionsAdapt
             title = itemView.findViewById(R.id.title);
             date = itemView.findViewById(R.id.date);
             sum = itemView.findViewById(R.id.sum);
+            cardView = itemView.findViewById(R.id.cardView);
 
         }
 
